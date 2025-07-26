@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Para mi Estrellita</title>
+  <link rel="stylesheet" href="/css/index.css" />
+</head>
+<body>
+
+  <div class="carta-cerrada" id="cartaCerrada">
+    <div class="sobre">
+      <div class="corazon-cerrado"></div>
+    </div>
+    <button class="boton-leer">Leer carta</button>
+  </div>
+
+  <div class="card" id="cartaAbierta" style="display: none;">
+    <h1>Para mi Estrellita 🌟</h1>
+    <p>
+      Perdóname por alejarme cuando más me necesitabas, por haberme comportado de formas que no merecías.<br><br>
+      Hoy solo puedo mirar el cielo y buscar tu luz entre las estrellas, porque tú eres mi estrellita, la que siempre brillaba incluso en mis noches más oscuras.<br><br>
+      Extraño tu voz, tu risa, tus mensajes, tu compañía... Todo de ti.<br><br>
+      Tal vez no lo leas nunca, pero si lo haces, solo quiero que sepas: aún te llevo en mi corazón, y siempre estaré agradecido por lo que compartimos.<br><br>
+      Te extraño, más de lo que las palabras pueden explicar.<br><br>
+      A veces cierro los ojos y me imagino contigo, en esas charlas, esos abrazos, esos momentos tan tuyos, tan nuestros.<br><br>
+      Si algún día vuelves a mirar hacia donde estoy, sabrás que aquí sigo... recordándote con el mismo cariño con el que te llamaba: mi estrellita.
+    </p>
+    <div class="corazon">💗</div>
+    <div class="firma">Con todo mi cariño, aún tuyo.</div>
+    <button class="boton-volver">Cerrar</button>
+  </div>
+
+  <audio autoplay loop>
+    <source src="musica.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio.
+  </audio>
+
+  <script>
+    const cartaCerrada = document.getElementById('cartaCerrada');
+    const sobre = document.querySelector('.sobre');
+    const botonLeer = document.querySelector('.boton-leer');
+    const card = document.querySelector('.card');
+    const botonVolver = document.querySelector('.boton-volver');
+
+    botonLeer.addEventListener('click', () => {
+      sobre.classList.add('abierta');
+      card.style.display = 'flex';
+      cartaCerrada.style.display = 'none';
+    });
+
+    botonVolver.addEventListener('click', () => {
+      sobre.classList.remove('abierta');
+      card.style.display = 'none';
+      cartaCerrada.style.display = 'flex';
+    });
+  </script>
+
+</body>
+</html>

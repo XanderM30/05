@@ -1,0 +1,213 @@
+/* Reset básico */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Quicksand', sans-serif;
+  background: linear-gradient(to bottom right, #fbc2eb, #a6c1ee);
+  min-height: 100vh;
+  color: #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+  flex-direction: column;
+}
+
+/* Contenedor carta cerrada */
+.carta-cerrada {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Sobre con forma de carta cerrada mejorado */
+.sobre {
+  position: relative;
+  width: 300px;
+  height: 210px;
+  background: linear-gradient(145deg, #fff0f6, #fce8f3);
+  border: 2px solid #d63384;
+  border-radius: 16px;
+  box-shadow:
+    0 12px 25px rgba(214, 51, 132, 0.25),
+    inset 0 0 15px #fce4f7,
+    inset 0 -8px 20px #f9badc;
+  overflow: hidden;
+  transition: box-shadow 0.3s ease, transform 0.7s ease;
+  cursor: pointer;
+  transform-origin: top center;
+  backface-visibility: hidden;
+  will-change: transform;
+  transform: rotateX(0deg); 
+}
+
+.sobre:hover {
+  box-shadow:
+    0 20px 40px rgba(214, 51, 132, 0.35),
+    inset 0 0 20px #fce4f7,
+    inset 0 -10px 25px #f9badc;
+  transform: translateY(-6px);
+}
+
+/* Estado abierto de la carta */
+.sobre.abierta {
+  transform: perspective(600px) rotateX(-75deg);
+  box-shadow:
+    0 25px 50px rgba(214, 51, 132, 0.4),
+    inset 0 0 20px #fce4f7,
+    inset 0 -10px 25px #f9badc;
+}
+
+/* Solapa triangular superior mejorada */
+.sobre::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 0;
+  width: 300px;
+  height: 130px;
+  background: linear-gradient(135deg, #d63384, #ddc8d1);
+  clip-path: polygon(0 0, 50% 100%, 100% 0);
+  border-radius: 18px 18px 0 0;
+  box-shadow:
+    0 5px 15px rgba(214, 51, 132, 0.5),
+    inset 0 8px 15px rgba(255, 255, 255, 0.2);
+  transition: background 0.3s ease;
+  z-index: 3;
+}
+
+.sobre:hover::before {
+  background: linear-gradient(135deg, #e8468e, #b7336e);
+  box-shadow:
+    0 7px 20px rgba(232, 70, 142, 0.6),
+    inset 0 10px 20px rgba(255, 255, 255, 0.3);
+}
+
+/* Pliegue diagonal sutil para volumen mejorado */
+.sobre::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 210px;
+  background: linear-gradient(135deg,
+    rgba(255, 255, 255, 0.4) 42%,
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.08) 57%,
+    rgba(0, 0, 0, 0) 65%);
+  transform: skewX(-20deg);
+  pointer-events: none;
+  z-index: 1;
+  border-radius: 16px;
+  box-shadow:
+    inset -7px 0 25px rgba(255, 255, 255, 0.5),
+    inset 7px 0 15px rgba(0, 0, 0, 0.07);
+}
+
+/* Corazón centrado en el sobre mejorado */
+.sobre .corazon-cerrado {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 6em;
+  color: #ff4d6d;
+  text-shadow:
+    0 0 10px #ff9ac4,
+    0 0 20px #ff356d,
+    0 0 30px #ff1a53;
+  pointer-events: none;
+  user-select: none;
+  animation: beat 1s infinite ease-in-out;
+}
+
+/* Animación de latido para el corazón */
+@keyframes beat {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.35);
+  }
+}
+
+.boton-leer,
+.boton-volver {
+  padding: 15px 40px;
+  font-size: 1.3em;
+  border-radius: 30px;
+  background-color: #d63384;
+  color: white;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 5px rgba(214, 51, 132, 0.6);
+  transition: background-color 0.3s ease, transform 0.25s ease, box-shadow 0.3s ease;
+  user-select: none;
+}
+
+.boton-leer:hover,
+.boton-volver:hover {
+  background-color: #c2185b;
+  transform: scale(1.07);
+  box-shadow: 0 8px 20px rgba(194, 24, 91, 0.8);
+}
+
+.boton-leer {
+  margin-top: 40px;
+}
+.boton-volver {
+  margin-top: 40px;
+}
+.boton-volver {
+  padding: 8px 15px; /* vertical y horizontal */
+  font-size: 1em;
+  border-radius: 20px;
+  width: auto;
+  min-width: 80px;
+}
+
+
+/* Carta abierta */
+.card {
+  max-width: 900px;
+  width: 90vw;
+  margin: 60px auto 0;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 45px 40px;
+  border-radius: 25px;
+  box-shadow:
+    0 15px 35px rgba(214, 51, 132, 0.3),
+    inset 0 0 20px rgba(255, 255, 255, 0.7);
+  text-align: justify;
+  color: #444;
+  font-size: 1.3em;
+  display: none;
+  flex-direction: column;
+  user-select: text;
+}
+
+/* Títulos con efecto glow más suave */
+h1 {
+  color: #d63384;
+  margin-bottom: 25px;
+  text-align: center;
+  font-weight: 700;
+  text-shadow: 0 0 6px #fff, 0 0 12px #fbb6d9;
+  animation: glow 2.5s ease-in-out infinite alternate;
+}
+
+/* Mejor glow */
+@keyframes glow {
+  from {
+    text-shadow: 0 0 6px #fff, 0 0 12px #fbb6d9;
+  }
+  to {
+    text-shadow: 0 0 12px #fff, 0 0 24px #ff9ac4;
+  }
+}
